@@ -1,0 +1,58 @@
+﻿@model bai2.program
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>program</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.number_student)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number_student)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.finish_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finish_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.days)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.days)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
