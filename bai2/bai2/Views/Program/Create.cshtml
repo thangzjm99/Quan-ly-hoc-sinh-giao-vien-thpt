@@ -1,0 +1,110 @@
+﻿@model bai2.program
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>program</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.number_student, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.number_student, new { @Value = "0", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.number_student, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.start_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.start_time, new { @type = "time", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.finish_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.finish_time, new { @type = "time", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.finish_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.days, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-6">
+                    <input class="day" type="checkbox" value="Sunday">Sunday
+                    <br />
+                    <input class="day" type="checkbox" value="Monday">Monday
+                    <br />
+                    <input class="day" type="checkbox" value="Tuesday">Tuesday
+                    <br />
+                    <input class="day" type="checkbox" value="Wednesday">Wednesday
+                </div>
+                <div class="col-md-6">
+                    <input class="day" type="checkbox" value="Thursday">Thursday
+                    <br />
+                    <input class="day" type="checkbox" value="Friday">Friday
+                    <br />
+                    <input class="day" type="checkbox" value="Saturday">Saturday
+                </div>
+                
+                
+                <input id="allDays" type="hidden" name="days" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submit_button" type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script>
+    var array = [];
+
+    $('.day').click(function () {
+        if ($.inArray($(this).val(), array) >= 0) {
+            array.splice(array.indexOf($(this).val()), 1)
+        } else {
+            array.push($(this).val())
+        }
+        
+        console.log(array)
+    })
+
+    $('#submit_button').click(function () {
+        $('#allDays').val() == array.join(',');
+    })
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,88 +1,84 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace bai2.Controllers
 {
-    public class StudentController : Controller
+    public class StaffController : Controller
     {
-        // GET: Student
+        // GET: Staff
         public ActionResult Index()
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.students.ToList());
+                return View(dbModel.staffs.ToList());
             }
-            
         }
 
-        // GET: Student/Details/5
+        // GET: Staff/Details/5
         public ActionResult Details(int id)
         {
-            using(DBModel dbModel = new DBModel())
+            using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.students.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.staffs.Where(x => x.id == id).FirstOrDefault());
             }
-            
         }
 
-        // GET: Student/Create
+        // GET: Staff/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Student/Create
+        // POST: Staff/Create
         [HttpPost]
-        public ActionResult Create(student student, HttpPostedFileBase uploadImage)
+        public ActionResult Create(staff staff, HttpPostedFileBase uploadImage)
         {
-           
             string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
             string extension = Path.GetExtension(uploadImage.FileName);
             string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
             filePath = filePath + extension;
             uploadImage.SaveAs(filePath);
-            student.image = filePath;
-            
+            staff.image = filePath;
+
 
             using (DBModel dbModel = new DBModel())
             {
-                
-                dbModel.students.Add(student);
+
+                dbModel.staffs.Add(staff);
                 dbModel.SaveChanges();
             }
 
             return RedirectToAction("Index");
-            
         }
 
-        // GET: Student/Edit/5
+        // GET: Staff/Edit/5
         public ActionResult Edit(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.students.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.staffs.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // POST: Student/Edit/5
+        // POST: Staff/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, student student)
+        public ActionResult Edit(int id, staff staff)
         {
             try
             {
                 using (DBModel dbModel = new DBModel())
                 {
-                    dbModel.Entry(student).State = EntityState.Modified;
+                    dbModel.Entry(staff).State = EntityState.Modified;
                     dbModel.SaveChanges();
                 }
-                    // TODO: Add update logic here
+                // TODO: Add update logic here
 
-                    return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -90,16 +86,16 @@ namespace bai2.Controllers
             }
         }
 
-        // GET: Student/Delete/5
+        // GET: Staff/Delete/5
         public ActionResult Delete(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.students.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.staffs.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // POST: Student/Delete/5
+        // POST: Staff/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -107,13 +103,13 @@ namespace bai2.Controllers
             {
                 using (DBModel dBModel = new DBModel())
                 {
-                    student student = dBModel.students.Where(x => x.id == id).FirstOrDefault();
-                    dBModel.students.Remove(student);
+                    staff staff = dBModel.staffs.Where(x => x.id == id).FirstOrDefault();
+                    dBModel.staffs.Remove(staff);
                     dBModel.SaveChanges();
 
-                    if(student.image != null)
+                    if (staff.image != null)
                     {
-                        string filePath = Path.Combine(Server.MapPath("~/Images"), student.image);
+                        string filePath = Path.Combine(Server.MapPath("~/Images"), staff.image);
                         System.IO.File.Delete(filePath);
                     }
                 }
