@@ -198,6 +198,9 @@
     <Content Include="Views\Program\Delete.cshtml" />
     <Content Include="Views\StudentProgram\Index.cshtml" />
     <Content Include="Views\StudentProgram\Details.cshtml" />
+    <Content Include="Views\StudentProgram\Create.cshtml" />
+    <Content Include="Views\StudentProgram\Edit.cshtml" />
+    <Content Include="Views\StudentProgram\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

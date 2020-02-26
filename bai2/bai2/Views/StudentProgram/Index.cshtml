@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<bai2.student_program>
 
+
 @{
     ViewBag.Title = "Index";
 }
@@ -29,10 +30,22 @@
         @Html.DisplayFor(modelItem => item.id)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.id_student)
+        @foreach(var student in ViewBag.studentList)
+        {
+            if(student.id == item.id_student)
+            {
+                @student.name
+            }
+        }
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.id_program)
+        @foreach (var program in ViewBag.programList)
+        {
+            if (program.id == item.id_program)
+            {
+                @program.name
+            }
+        }
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

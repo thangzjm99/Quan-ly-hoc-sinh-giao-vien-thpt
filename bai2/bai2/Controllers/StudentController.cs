@@ -46,7 +46,7 @@ namespace bai2.Controllers
             string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
             filePath = filePath + extension;
             uploadImage.SaveAs(filePath);
-            student.image = filePath;
+            student.image = "~/Images/"+fileName + extension;
             
 
             using (DBModel dbModel = new DBModel())
