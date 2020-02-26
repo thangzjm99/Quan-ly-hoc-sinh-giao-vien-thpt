@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,10 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
+                List<student> studentList = dbModel.students.ToList();
+                List<program> programList = dbModel.programs.ToList();
+                ViewBag.studentList = studentList;
+                ViewBag.programList = programList;
                 return View(dbModel.student_program.ToList());
             }
         }
@@ -29,18 +34,34 @@ namespace bai2.Controllers
         // GET: StudentProgram/Create
         public ActionResult Create()
         {
-            return View();
+            using (DBModel dbModel = new DBModel())
+            {
+
+                List<student> students = dbModel.students.ToList();
+                List<program> programs = dbModel.programs.ToList();
+                SelectList studentList = new SelectList(students, "id", "name");
+                SelectList programList = new SelectList(programs, "id", "name");
+                ViewBag.studentList = studentList;
+                ViewBag.programList = programList;
+                return View();
+            }
+              
         }
 
         // POST: StudentProgram/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(student_program student_program)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (DBModel dbModel = new DBModel())
+                {
+                    dbModel.student_program.Add(student_program);
+                    dbModel.SaveChanges();
+                }
+                    // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
             }
             catch
             {
@@ -51,15 +72,29 @@ namespace bai2.Controllers
         // GET: StudentProgram/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (DBModel dbModel = new DBModel())
+            {
+                List<student> students = dbModel.students.ToList();
+                List<program> programs = dbModel.programs.ToList();
+                SelectList studentList = new SelectList(students, "id", "name");
+                SelectList programList = new SelectList(programs, "id", "name");
+                ViewBag.studentList = studentList;
+                ViewBag.programList = programList;
+                return View(dbModel.student_program.Where(x => x.id == id).FirstOrDefault());
+            }
         }
 
         // POST: StudentProgram/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, student_program student_program)
         {
             try
             {
+                using (DBModel dbModel = new DBModel())
+                {
+                    dbModel.Entry(student_program).State = EntityState.Modified;
+                    dbModel.SaveChanges();
+                }
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");
@@ -73,7 +108,10 @@ namespace bai2.Controllers
         // GET: StudentProgram/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (DBModel dbModel = new DBModel())
+            {
+                return View(dbModel.student_program.Where(x => x.id == id).FirstOrDefault());
+            }
         }
 
         // POST: StudentProgram/Delete/5
@@ -82,9 +120,13 @@ namespace bai2.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                using (DBModel dBModel = new DBModel())
+                {
+                    student_program student_program = dBModel.student_program.Where(x => x.id == id).FirstOrDefault();
+                    dBModel.student_program.Remove(student_program);
+                    dBModel.SaveChanges();
+                }
+                    return RedirectToAction("Index");
             }
             catch
             {
