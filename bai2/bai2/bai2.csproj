@@ -52,6 +52,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StaffProgramController.cs" />
@@ -151,6 +153,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -201,12 +204,16 @@
     <Content Include="Views\StudentProgram\Create.cshtml" />
     <Content Include="Views\StudentProgram\Edit.cshtml" />
     <Content Include="Views\StudentProgram\Delete.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\StaffProgram\Index.cshtml" />
     <Content Include="Views\StaffProgram\Details.cshtml" />
     <Content Include="Views\StaffProgram\Create.cshtml" />
     <Content Include="Views\StaffProgram\Edit.cshtml" />
     <Content Include="Views\StaffProgram\Delete.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+=======
+    <Content Include="Views\Login\Index.cshtml" />
+>>>>>>> fdb55425053844fc788cd54f5b98e3449ab2d509
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
