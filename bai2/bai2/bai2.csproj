@@ -131,6 +131,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\StaffProgramController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentProgramController.cs" />
     <Compile Include="DBModel.cs" />
@@ -181,7 +182,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
@@ -201,6 +201,12 @@
     <Content Include="Views\StudentProgram\Create.cshtml" />
     <Content Include="Views\StudentProgram\Edit.cshtml" />
     <Content Include="Views\StudentProgram\Delete.cshtml" />
+    <Content Include="Views\StaffProgram\Index.cshtml" />
+    <Content Include="Views\StaffProgram\Details.cshtml" />
+    <Content Include="Views\StaffProgram\Create.cshtml" />
+    <Content Include="Views\StaffProgram\Edit.cshtml" />
+    <Content Include="Views\StaffProgram\Delete.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

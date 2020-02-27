@@ -46,7 +46,7 @@ namespace bai2.Controllers
             string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
             filePath = filePath + extension;
             uploadImage.SaveAs(filePath);
-            student.image = "~/Images/"+fileName + extension;
+            student.image = fileName + extension;
             
 
             using (DBModel dbModel = new DBModel())
@@ -108,14 +108,16 @@ namespace bai2.Controllers
                 using (DBModel dBModel = new DBModel())
                 {
                     student student = dBModel.students.Where(x => x.id == id).FirstOrDefault();
+                    if(student.image != null)
+                        {
+                            string filePath = Path.Combine(Server.MapPath("~/Images"), student.image);
+                            System.IO.File.Delete(filePath);
+                        }
+
                     dBModel.students.Remove(student);
                     dBModel.SaveChanges();
 
-                    if(student.image != null)
-                    {
-                        string filePath = Path.Combine(Server.MapPath("~/Images"), student.image);
-                        System.IO.File.Delete(filePath);
-                    }
+                   
                 }
                 // TODO: Add delete logic here
 
