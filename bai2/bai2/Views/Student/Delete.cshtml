@@ -42,14 +42,14 @@
         <dd>
             @Html.DisplayFor(model => model.address)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.image)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.image)
+            <img src="@Url.Content("~/Images/"+@Model.image)" alt="Alternate Text" />
         </dd>
+
+      
 
     </dl>
 
