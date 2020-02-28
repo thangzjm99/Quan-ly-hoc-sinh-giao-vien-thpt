@@ -39,7 +39,6 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
-
                 dbModel.programs.Add(program);
                 dbModel.SaveChanges();
             }

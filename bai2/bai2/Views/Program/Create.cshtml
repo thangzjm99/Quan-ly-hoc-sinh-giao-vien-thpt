@@ -4,6 +4,8 @@
     ViewBag.Title = "Create";
 }
 
+
+
 <h2>Create</h2>
 
 
@@ -34,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.start_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.start_time, new { @type = "time", htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.start_time, new {@class="timepicker", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.finish_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.finish_time, new { @type = "time", htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.finish_time, new {@class="timepicker", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.finish_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,8 +68,8 @@
                     <br />
                     <input class="day" type="checkbox" value="Saturday">Saturday
                 </div>
-                
-                
+
+
                 <input id="allDays" type="hidden" name="days" value="" />
             </div>
         </div>
@@ -87,6 +89,12 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous">
 </script>
+
+<script src="~/Assets/TimePicker/mdtimepicker.js"></script>
+<script>
+      $('.timepicker').mdtimepicker(); 
+</script>
+
 <script>
     var array = [];
 
@@ -96,7 +104,7 @@
         } else {
             array.push($(this).val())
         }
-        
+
         console.log(array)
     })
 

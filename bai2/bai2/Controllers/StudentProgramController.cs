@@ -27,6 +27,10 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
+                List<student> studentList = dbModel.students.ToList();
+                List<program> programList = dbModel.programs.ToList();
+                ViewBag.studentList = studentList;
+                ViewBag.programList = programList;
                 return View(dbModel.student_program.Where(x => x.id == id).FirstOrDefault());
             }
         }
@@ -110,6 +114,10 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
+                List<student> studentList = dbModel.students.ToList();
+                List<program> programList = dbModel.programs.ToList();
+                ViewBag.studentList = studentList;
+                ViewBag.programList = programList;
                 return View(dbModel.student_program.Where(x => x.id == id).FirstOrDefault());
             }
         }
