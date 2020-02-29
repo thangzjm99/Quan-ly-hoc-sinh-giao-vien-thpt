@@ -18,6 +18,7 @@ namespace bai2
         public int? gender { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? birthday { get; set; }
 
         [Column(TypeName = "text")]
