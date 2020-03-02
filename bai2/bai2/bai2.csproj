@@ -149,6 +149,7 @@
     <Compile Include="sysdiagram.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\jquery\jquery.js" />
     <Content Include="Assets\TimePicker\.gitattributes" />
     <Content Include="Assets\TimePicker\index.html" />
     <Content Include="Assets\TimePicker\mdtimepicker-theme.css" />

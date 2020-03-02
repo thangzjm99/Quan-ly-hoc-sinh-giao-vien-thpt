@@ -10,49 +10,52 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_student)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_program)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.id)
-    </td>
-    <td>
-        @foreach(var student in ViewBag.studentList)
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_program)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            if(student.id == item.id_student)
-            {
-                @student.name
-            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @foreach (var student in ViewBag.studentList)
+                    {
+                        if (student.id == item.id_student)
+                        {
+                            @student.name
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var program in ViewBag.programList)
+                    {
+                        if (program.id == item.id_program)
+                        {
+                            @program.name
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
         }
-    </td>
-    <td>
-        @foreach (var program in ViewBag.programList)
-        {
-            if (program.id == item.id_program)
-            {
-                @program.name
-            }
-        }
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.id })
-    </td>
-</tr>
-}
-
+    </tbody>
 </table>
