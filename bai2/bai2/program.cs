@@ -23,9 +23,9 @@ namespace bai2
 
         public int? number_student { get; set; }
 
-        public TimeSpan? start_time { get; set; }
+        public string start_time { get; set; }
 
-        public TimeSpan? finish_time { get; set; }
+        public string finish_time { get; set; }
 
         [StringLength(255)]
         public string days { get; set; }

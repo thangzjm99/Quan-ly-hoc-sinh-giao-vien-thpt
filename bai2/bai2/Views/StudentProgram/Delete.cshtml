@@ -16,7 +16,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_student)
+            @foreach (var student in ViewBag.studentList)
+            {
+                if (student.id == Model.id_student)
+                {
+                    @student.name
+                }
+            }
         </dd>
 
         <dt>
@@ -24,7 +30,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_program)
+            @foreach (var program in ViewBag.programList)
+            {
+                if (program.id == Model.id_program)
+                {
+                    @program.name
+                }
+            }
         </dd>
 
     </dl>

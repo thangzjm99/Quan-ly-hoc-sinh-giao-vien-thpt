@@ -149,6 +149,14 @@
     <Compile Include="sysdiagram.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\jquery\jquery.js" />
+    <Content Include="Assets\TimePicker\.gitattributes" />
+    <Content Include="Assets\TimePicker\index.html" />
+    <Content Include="Assets\TimePicker\mdtimepicker-theme.css" />
+    <Content Include="Assets\TimePicker\mdtimepicker.css" />
+    <Content Include="Assets\TimePicker\mdtimepicker.js" />
+    <Content Include="Assets\TimePicker\mdtimepicker.min.css" />
+    <Content Include="Assets\TimePicker\mdtimepicker.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -160,6 +168,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Assets\TimePicker\LICENSE" />
+    <Content Include="Assets\TimePicker\README.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

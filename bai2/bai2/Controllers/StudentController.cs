@@ -71,12 +71,27 @@ namespace bai2.Controllers
 
         // POST: Student/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, student student)
+        public ActionResult Edit(int id, student student, HttpPostedFileBase uploadImage)
         {
             try
             {
                 using (DBModel dbModel = new DBModel())
                 {
+                    if (Request.Form["image"] != null)
+                    {
+                        if (student.image != null)
+                        {
+                            string filePathOld = Path.Combine(Server.MapPath("~/Images"), student.image);
+                            System.IO.File.Delete(filePathOld);
+                        }
+
+                        string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
+                        string extension = Path.GetExtension(uploadImage.FileName);
+                        string filePathNew = Path.Combine(Server.MapPath("~/Images"), fileName);
+                        filePathNew = filePathNew + extension;
+                        uploadImage.SaveAs(filePathNew);
+                        student.image = fileName + extension;
+                    }
                     dbModel.Entry(student).State = EntityState.Modified;
                     dbModel.SaveChanges();
                 }
