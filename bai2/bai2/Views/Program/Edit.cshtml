@@ -52,8 +52,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.days, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.days, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.days, "", new { @class = "text-danger" })
+                <div class="col-md-6">
+                    <input class="day" type="checkbox" value="Sunday">Sunday
+                    <br />
+                    <input class="day" type="checkbox" value="Monday">Monday
+                    <br />
+                    <input class="day" type="checkbox" value="Tuesday">Tuesday
+                    <br />
+                    <input class="day" type="checkbox" value="Wednesday">Wednesday
+                </div>
+                <div class="col-md-6">
+                    <input class="day" type="checkbox" value="Thursday">Thursday
+                    <br />
+                    <input class="day" type="checkbox" value="Friday">Friday
+                    <br />
+                    <input class="day" type="checkbox" value="Saturday">Saturday
+                </div>
+
+
+                <input id="allDays" type="hidden" name="days" value="" />
             </div>
         </div>
 

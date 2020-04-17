@@ -109,7 +109,8 @@
     })
 
     $('#submit_button').click(function () {
-        $('#allDays').val() == array.join(',');
+        $('#allDays').val(array.join(','));
+        console.log($('#allDays').val());
     })
 
 </script>

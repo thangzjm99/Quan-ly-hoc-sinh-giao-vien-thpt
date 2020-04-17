@@ -37,6 +37,8 @@ namespace bai2.Controllers
         [HttpPost]
         public ActionResult Create(program program)
         {
+            program.days = Request.Form["days"];
+
             using (DBModel dbModel = new DBModel())
             {
                 dbModel.programs.Add(program);
@@ -61,6 +63,8 @@ namespace bai2.Controllers
         {
             try
             {
+                program.days = Request.Form["days"];
+
                 using (DBModel dbModel = new DBModel())
                 {
                     dbModel.Entry(program).State = EntityState.Modified;

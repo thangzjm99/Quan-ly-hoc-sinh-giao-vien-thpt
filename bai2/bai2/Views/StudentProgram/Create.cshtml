@@ -16,14 +16,14 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.id_student, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label>Choose Student</label>
             <div class="col-md-10">
                 @Html.DropDownList("id_student", (IEnumerable<SelectListItem>)ViewBag.studentList, "Choose Student",new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_program, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label>Choose Program</label>
             <div class="col-md-10">
                 @Html.DropDownList("id_program", (IEnumerable<SelectListItem>)ViewBag.programList,"Choose Program", new { @class = "form-control" })
             </div>
