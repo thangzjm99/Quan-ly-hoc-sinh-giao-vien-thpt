@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
@@ -22,7 +22,12 @@
     <link href="~/Assets/TimePicker/mdtimepicker.css" rel="stylesheet">
 
 </head>
-
+<style>
+    .error {
+        font-size: 1rem !important;
+        color: red;
+    }
+</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -388,6 +393,11 @@
     <!-- Bootstrap core JavaScript-->
     <!-- <script src="~/Content/vendor/jquery/jquery.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+
     <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

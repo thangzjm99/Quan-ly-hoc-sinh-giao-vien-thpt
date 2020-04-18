@@ -7,10 +7,10 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Program", FormMethod.Post, new { @id = "editProgram" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>program</h4>
         <hr />
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", name = "name" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.number_student, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.number_student, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.number_student, new { htmlAttributes = new { @class = "form-control" }, name = "number_student" })
                 @Html.ValidationMessageFor(model => model.number_student, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.start_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.start_time, new { @class = "timepicker",htmlAttributes = new { @class = "form-control timepicker" } })
                 @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.finish_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.finish_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.finish_time, new { @class = "timepicker",htmlAttributes = new { @class = "form-control timepicker" } })
                 @Html.ValidationMessageFor(model => model.finish_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +76,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="" id="submit_button" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -85,7 +85,57 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
 
+<script src="~/Assets/TimePicker/mdtimepicker.js"></script>
+<script>
+    $('.timepicker').mdtimepicker();
+</script>
+
+<script>
+    var array = [];
+
+    $('.day').click(function () {
+        if ($.inArray($(this).val(), array) >= 0) {
+            array.splice(array.indexOf($(this).val()), 1)
+        } else {
+            array.push($(this).val())
+        }
+
+        console.log(array)
+    })
+
+    $('#submit_button').click(function () {
+        $('#allDays').val(array.join(','));
+        console.log($('#allDays').val());
+    })
+
+    $(document).ready(function () {
+        $("#editProgram").validate({
+            // Specify validation rules
+            rules: {
+                name: "required",
+                number_student : "digits"
+            },
+            messages: {
+                name: "Tên lớp học không được để trống",
+                number_student : "Giá trị không hợp lệ"
+            },
+            submitHandler: function (form) {
+                form.submit()
+            }
+        });
+    })
+
+    $('#submit_button').click(function() {
+			if ($('#editProgram').valid()){
+				$('#editProgram').submit();
+			}
+		})
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

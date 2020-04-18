@@ -2,14 +2,13 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Program", FormMethod.Post, new { @id = "createProgram" }))
 {
     @Html.AntiForgeryToken()
 
@@ -20,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", name = "name" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,14 +28,14 @@
             @Html.LabelFor(model => model.number_student, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.number_student, new { @Value = "0", htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.number_student, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.number_student, "", new { @class = "text-danger", name="number_student" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.start_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.start_time, new {@class="timepicker", htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.start_time, new { @class = "timepicker", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.finish_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.finish_time, new {@class="timepicker", htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.finish_time, new { @class = "timepicker", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.finish_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +75,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="submit_button" type="submit" value="Create" class="btn btn-default" />
+                <input id="submit_button" type="" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -85,6 +84,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous">
@@ -92,7 +92,7 @@
 
 <script src="~/Assets/TimePicker/mdtimepicker.js"></script>
 <script>
-      $('.timepicker').mdtimepicker(); 
+    $('.timepicker').mdtimepicker();
 </script>
 
 <script>
@@ -113,6 +113,28 @@
         console.log($('#allDays').val());
     })
 
+    $(document).ready(function () {
+        $("#createProgram").validate({
+            // Specify validation rules
+            rules: {
+                name: "required",
+                number_student : "digits"
+            },
+            messages: {
+                name: "Tên lớp học không được để trống",
+                number_student : "Giá trị không hợp lệ"
+            },
+            submitHandler: function (form) {
+                form.submit()
+            }
+        });
+    })
+
+    $('#submit_button').click(function() {
+			if ($('#createProgram').valid()){
+				$('#createProgram').submit();
+			}
+		})
 </script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
