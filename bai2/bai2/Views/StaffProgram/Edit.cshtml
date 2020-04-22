@@ -2,15 +2,16 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "StaffProgram", FormMethod.Post, new { @id = "editStaffProgram" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>staff_program</h4>
         <hr />
@@ -20,20 +21,20 @@
         <div class="form-group">
             <label>Choose Staff</label>
             <div class="col-md-10">
-                @Html.DropDownList("id_staff", (IEnumerable<SelectListItem>)ViewBag.staffList, "Choose Staff", new { @class = "form-control" })
+                @Html.DropDownList("id_staff", (IEnumerable<SelectListItem>)ViewBag.staffList, "Choose Staff", new { @class = "form-control", name = "id_staff" })
             </div>
         </div>
 
         <div class="form-group">
             <label>Program</label>
             <div class="col-md-10">
-                @Html.DropDownList("id_program", (IEnumerable<SelectListItem>)ViewBag.programList, "Choose Program", new { @class = "form-control" })
+                @Html.DropDownList("id_program", (IEnumerable<SelectListItem>)ViewBag.programList, "Choose Program", new { @class = "form-control", name = "id_program" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input id="submit_button" type="button" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -42,7 +43,36 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script>
 
+
+    $(document).ready(function () {
+        $("#editStaffProgram").validate({
+            // Specify validation rules
+            rules: {
+                id_staff: "required",
+                id_program : "required"
+            },
+            messages: {
+                id_staff: "Vui lòng chọn giáo viên",
+                id_program : "Vui lòng chọn học phần"
+            },
+            submitHandler: function (form) {
+                form.submit()
+            }
+        });
+    })
+
+    $('#submit_button').click(function() {
+			if ($('#editStaffProgram').valid()){
+				$('#editStaffProgram').submit();
+			}
+		})
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

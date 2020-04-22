@@ -40,14 +40,15 @@ namespace bai2.Controllers
         [HttpPost]
         public ActionResult Create(student student, HttpPostedFileBase uploadImage)
         {
-           
-            string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
-            string extension = Path.GetExtension(uploadImage.FileName);
-            string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
-            filePath = filePath + extension;
-            uploadImage.SaveAs(filePath);
-            student.image = fileName + extension;
-            
+            if (Request.Form["image"] != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
+                string extension = Path.GetExtension(uploadImage.FileName);
+                string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                filePath = filePath + extension;
+                uploadImage.SaveAs(filePath);
+                student.image = fileName + extension;
+            }
 
             using (DBModel dbModel = new DBModel())
             {
