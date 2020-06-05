@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
+                
                 return View(dbModel.students.ToList());
             }
             
@@ -33,14 +36,19 @@ namespace bai2.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
-            return View();
+            using (DBModel dbModel = new DBModel())
+            {
+                List<program> programList = dbModel.programs.ToList();
+                ViewBag.programList = programList;
+                return View();
+            }
         }
 
         // POST: Student/Create
         [HttpPost]
         public ActionResult Create(student student, HttpPostedFileBase uploadImage)
         {
-            if (Request.Form["image"] != null)
+            if(Request.Form["uploadImage"] != null)
             {
                 string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
                 string extension = Path.GetExtension(uploadImage.FileName);
@@ -48,13 +56,26 @@ namespace bai2.Controllers
                 filePath = filePath + extension;
                 uploadImage.SaveAs(filePath);
                 student.image = fileName + extension;
+            
             }
+            
 
             using (DBModel dbModel = new DBModel())
             {
                 
-                dbModel.students.Add(student);
+                dbModel.students.Add(student); 
                 dbModel.SaveChanges();
+                string[] program = Request.Form["programs[]"].Split(',');
+                
+
+                for (int i = 0; i < program.Length; i++)
+                {
+                    var student_program = new student_program();
+                    student_program.id_student = student.id;
+                    student_program.id_program = Convert.ToInt32(program[i]);
+                    dbModel.student_program.Add(student_program);
+                    dbModel.SaveChanges();
+                }
             }
 
             return RedirectToAction("Index");
@@ -78,7 +99,7 @@ namespace bai2.Controllers
             {
                 using (DBModel dbModel = new DBModel())
                 {
-                    if (Request.Form["image"] != null)
+                    if (uploadImage != null && uploadImage.ContentLength > 0)
                     {
                         if (student.image != null)
                         {
@@ -94,6 +115,10 @@ namespace bai2.Controllers
                         student.image = fileName + extension;
                     }
                     dbModel.Entry(student).State = EntityState.Modified;
+                    if (uploadImage == null)
+                    {
+                        dbModel.Entry(student).Property(m => m.image).IsModified = false;
+                    }
                     dbModel.SaveChanges();
                 }
                     // TODO: Add update logic here
