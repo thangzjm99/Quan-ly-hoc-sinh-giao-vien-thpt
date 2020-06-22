@@ -1,0 +1,96 @@
+﻿@model bai2.mark
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Mark", FormMethod.Post, new { @id = "editMark" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>mark</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            Choose Student
+            <div class="col-md-10">
+                @Html.DropDownList("student_id", (IEnumerable<SelectListItem>)ViewBag.studentList, "Choose Student", new { @class = "form-control", name = "student_id" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            Choose Type Mark
+            <div class="col-md-10">
+                @Html.DropDownList("type_mark_id", (IEnumerable<SelectListItem>)ViewBag.typeMarkList, "Choose Type Mark", new { @class = "form-control", name = "type_mark_id" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Chose Course</label>
+            <div class="col-md-10">
+                @Html.DropDownList("course_id", (IEnumerable<SelectListItem>)ViewBag.courseList, "Choose Course", new { @class = "form-control", name = "course_id" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mark1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mark1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mark1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submit_button" type="button" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script>
+
+
+    $(document).ready(function () {
+        $("#editMark").validate({
+            // Specify validation rules
+            rules: {
+                student_id: "required",
+                type_mark_id: "required",
+                course_id: "required",
+            },
+            messages: {
+                type_mark_id: "Vui lòng chọn loại điểm",
+                student_id: "Vui lòng chọn học sinh",
+                course_id: "Vui lòng chọn môn học"
+            },
+            submitHandler: function (form) {
+                form.submit()
+            }
+        });
+    })
+
+    $('#submit_button').click(function () {
+        if ($('#editMark').valid()) {
+            $('#editMark').submit();
+        }
+    })
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

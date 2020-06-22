@@ -129,17 +129,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MarkController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StaffProgramController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentProgramController.cs" />
+    <Compile Include="Controllers\TypeMarkController.cs" />
+    <Compile Include="cours.cs" />
     <Compile Include="DBModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="mark.cs" />
     <Compile Include="program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="staff.cs" />
@@ -147,6 +152,7 @@
     <Compile Include="student.cs" />
     <Compile Include="student_program.cs" />
     <Compile Include="sysdiagram.cs" />
+    <Compile Include="type_mark.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\assets\css\fontawesome-all.min.css" />
@@ -2114,6 +2120,21 @@
     <Content Include="Views\StaffProgram\Delete.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Delete.cshtml" />
+    <Content Include="Views\TypeMark\Index.cshtml" />
+    <Content Include="Views\TypeMark\Details.cshtml" />
+    <Content Include="Views\TypeMark\Create.cshtml" />
+    <Content Include="Views\TypeMark\Edit.cshtml" />
+    <Content Include="Views\TypeMark\Delete.cshtml" />
+    <Content Include="Views\Mark\Index.cshtml" />
+    <Content Include="Views\Mark\Create.cshtml" />
+    <Content Include="Views\Mark\Edit.cshtml" />
+    <Content Include="Views\Mark\Details.cshtml" />
+    <Content Include="Views\Mark\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

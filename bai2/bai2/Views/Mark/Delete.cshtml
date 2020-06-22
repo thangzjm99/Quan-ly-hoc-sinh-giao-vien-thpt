@@ -1,0 +1,74 @@
+﻿@model bai2.mark
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>mark</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Student
+            </dt>
+
+            <dd>
+                @foreach (var student in ViewBag.studentList)
+                {
+                    if (student.id == Model.student_id)
+                    {
+                        @student.name
+                    }
+                }
+            </dd>
+
+            <dt>
+                Type Mark
+            </dt>
+
+            <dd>
+                @foreach (var typeMark in ViewBag.typeMarkList)
+                {
+                    if (typeMark.id == Model.type_mark_id)
+                    {
+                        @typeMark.name
+                    }
+                }
+            </dd>
+            <dt>
+                Course
+            </dt>
+
+            <dd>
+                @foreach (var course in ViewBag.courseList)
+                {
+                    if (course.id == Model.course_id)
+                    {
+                        @course.name
+                    }
+                }
+            </dd>
+            <dt>
+                Mark
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mark1)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>

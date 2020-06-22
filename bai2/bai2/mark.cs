@@ -6,12 +6,18 @@ namespace bai2
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class staff_program
+    [Table("mark")]
+    public partial class mark
     {
         public int id { get; set; }
 
-        public int id_staff { get; set; }
+        public int? student_id { get; set; }
 
-        public int id_program { get; set; }
+        public int? type_mark_id { get; set; }
+
+        public int? course_id { get; set; }
+
+        [Column("mark")]
+        public double? mark1 { get; set; }
     }
 }

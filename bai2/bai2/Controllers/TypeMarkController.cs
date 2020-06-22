@@ -7,70 +7,43 @@ using System.Web.Mvc;
 
 namespace bai2.Controllers
 {
-    public class ProgramController : Controller
+    public class TypeMarkController : Controller
     {
-        // GET: Program
+        // GET: TypeMark
         public ActionResult Index()
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.marks.ToList());
+                return View(dbModel.type_mark.ToList());
             }
         }
 
-        // GET: Program/Details/5
+        // GET: TypeMark/Details/5
         public ActionResult Details(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.type_mark.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // GET: Program/Create
+        // GET: TypeMark/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Program/Create
+        // POST: TypeMark/Create
         [HttpPost]
-        public ActionResult Create(program program)
-        {
-            program.days = Request.Form["days"];
-
-            using (DBModel dbModel = new DBModel())
-            {
-                dbModel.programs.Add(program);
-                dbModel.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Program/Edit/5
-        public ActionResult Edit(int id)
-        {
-            using (DBModel dbModel = new DBModel())
-            {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
-            }
-        }
-
-        // POST: Program/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, program program)
+        public ActionResult Create(type_mark type_mark)
         {
             try
             {
-                program.days = Request.Form["days"];
-
                 using (DBModel dbModel = new DBModel())
                 {
-                    dbModel.Entry(program).State = EntityState.Modified;
+                    dbModel.type_mark.Add(type_mark);
                     dbModel.SaveChanges();
                 }
-                // TODO: Add update logic here
 
                 return RedirectToAction("Index");
             }
@@ -80,29 +53,57 @@ namespace bai2.Controllers
             }
         }
 
-        // GET: Program/Delete/5
+        // GET: TypeMark/Edit/5
+        public ActionResult Edit(int id)
+        {
+            using (DBModel dbModel = new DBModel())
+            {
+                return View(dbModel.type_mark.Where(x => x.id == id).FirstOrDefault());
+            }
+        }
+
+        // POST: TypeMark/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, type_mark type_mark)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                using (DBModel dbModel = new DBModel())
+                {
+                    dbModel.Entry(type_mark).State = EntityState.Modified;
+                    dbModel.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: TypeMark/Delete/5
         public ActionResult Delete(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.type_mark.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // POST: Program/Delete/5
+        // POST: TypeMark/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
+                // TODO: Add delete logic here
                 using (DBModel dBModel = new DBModel())
                 {
-                    program program = dBModel.programs.Where(x => x.id == id).FirstOrDefault();
-                    dBModel.programs.Remove(program);
+                    type_mark type_mark = dBModel.type_mark.Where(x => x.id == id).FirstOrDefault();
+                    dBModel.type_mark.Remove(type_mark);
                     dBModel.SaveChanges();
                 }
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

@@ -14,11 +14,13 @@ namespace bai2
 
         public virtual DbSet<program> programs { get; set; }
         public virtual DbSet<staff> staffs { get; set; }
-        public virtual DbSet<student> students { get; set; }
-
-        public virtual DbSet<student_program> student_program { get; set; }
         public virtual DbSet<staff_program> staff_program { get; set; }
+        public virtual DbSet<student> students { get; set; }
+        public virtual DbSet<student_program> student_program { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<cours> courses { get; set; }
+        public virtual DbSet<mark> marks { get; set; }
+        public virtual DbSet<type_mark> type_mark { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,7 +36,10 @@ namespace bai2
                 .Property(e => e.created_at)
                 .IsFixedLength();
 
-            
+            modelBuilder.Entity<program>()
+                .HasMany(e => e.students)
+                .WithMany(e => e.programs)
+                .Map(m => m.ToTable("studentprograms"));
 
             modelBuilder.Entity<staff>()
                 .Property(e => e.name)

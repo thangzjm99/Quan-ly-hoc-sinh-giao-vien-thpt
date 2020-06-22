@@ -1,73 +1,79 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace bai2.Controllers
 {
-    public class ProgramController : Controller
+    public class CourseController : Controller
     {
-        // GET: Program
+        // GET: Course
         public ActionResult Index()
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.marks.ToList());
+
+                return View(dbModel.courses.ToList());
             }
         }
 
-        // GET: Program/Details/5
+        // GET: Course/Details/5
         public ActionResult Details(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.courses.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // GET: Program/Create
+        // GET: Course/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Program/Create
+        // POST: Course/Create
         [HttpPost]
-        public ActionResult Create(program program)
+        public ActionResult Create(cours cours)
         {
-            program.days = Request.Form["days"];
-
-            using (DBModel dbModel = new DBModel())
+            try
             {
-                dbModel.programs.Add(program);
-                dbModel.SaveChanges();
-            }
+                using (DBModel dbModel = new DBModel())
+                {
+                    dbModel.courses.Add(cours);
+                    dbModel.SaveChanges();
+                }
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Program/Edit/5
+        // GET: Course/Edit/5
         public ActionResult Edit(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.courses.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // POST: Program/Edit/5
+        // POST: Course/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, program program)
+        public ActionResult Edit(int id, cours cours)
         {
             try
             {
-                program.days = Request.Form["days"];
-
                 using (DBModel dbModel = new DBModel())
                 {
-                    dbModel.Entry(program).State = EntityState.Modified;
+                    dbModel.Entry(cours).State = EntityState.Modified;
                     dbModel.SaveChanges();
                 }
                 // TODO: Add update logic here
@@ -80,16 +86,16 @@ namespace bai2.Controllers
             }
         }
 
-        // GET: Program/Delete/5
+        // GET: Course/Delete/5
         public ActionResult Delete(int id)
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.programs.Where(x => x.id == id).FirstOrDefault());
+                return View(dbModel.courses.Where(x => x.id == id).FirstOrDefault());
             }
         }
 
-        // POST: Program/Delete/5
+        // POST: Course/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -97,8 +103,8 @@ namespace bai2.Controllers
             {
                 using (DBModel dBModel = new DBModel())
                 {
-                    program program = dBModel.programs.Where(x => x.id == id).FirstOrDefault();
-                    dBModel.programs.Remove(program);
+                    cours cours = dBModel.courses.Where(x => x.id == id).FirstOrDefault();
+                    dBModel.courses.Remove(cours);
                     dBModel.SaveChanges();
                 }
                 // TODO: Add delete logic here
