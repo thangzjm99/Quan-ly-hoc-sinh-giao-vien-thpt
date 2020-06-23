@@ -44,8 +44,7 @@ namespace bai2.Controllers
         [HttpPost]
         public ActionResult Create(staff staff, HttpPostedFileBase uploadImage)
         {
-            if (Request.Form["uploadImage"] != null)
-            {
+           
                 string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
                 string extension = Path.GetExtension(uploadImage.FileName);
                 string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
@@ -53,7 +52,7 @@ namespace bai2.Controllers
                 uploadImage.SaveAs(filePath);
                 staff.image = fileName + extension;
 
-            }
+            
 
 
             using (DBModel dbModel = new DBModel())
