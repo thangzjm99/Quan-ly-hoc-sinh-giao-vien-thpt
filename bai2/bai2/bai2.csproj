@@ -1809,6 +1809,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="PropertiesHome\css\one-page-wonder.css" />
     <Content Include="PropertiesHome\css\one-page-wonder.min.css" />
+    <Content Include="PropertiesHome\guide\1.png" />
+    <Content Include="PropertiesHome\guide\2.png" />
+    <Content Include="PropertiesHome\guide\3.png" />
+    <Content Include="PropertiesHome\guide\4.png" />
+    <Content Include="PropertiesHome\guide\5.png" />
+    <Content Include="PropertiesHome\guide\6.png" />
+    <Content Include="PropertiesHome\guide\7.png" />
+    <Content Include="PropertiesHome\guide\8.png" />
     <Content Include="PropertiesHome\images\demo\150x150.gif" />
     <Content Include="PropertiesHome\images\demo\48x48.gif" />
     <Content Include="PropertiesHome\images\demo\avatar.gif" />
@@ -2135,6 +2143,7 @@
     <Content Include="Views\Mark\Edit.cshtml" />
     <Content Include="Views\Mark\Details.cshtml" />
     <Content Include="Views\Mark\Delete.cshtml" />
+    <Content Include="Views\Home\Guide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
