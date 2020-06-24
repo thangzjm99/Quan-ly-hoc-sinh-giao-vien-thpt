@@ -491,3 +491,4 @@ C:\Users\Nammain\Documents\GitHub\QLTV\Quan-ly-hoc-sinh-giao-vien-thpt\bai2\bai2
 C:\Users\Nammain\Documents\GitHub\QLTV\Quan-ly-hoc-sinh-giao-vien-thpt\bai2\bai2\obj\Debug\bai2.csproj.CopyComplete
 C:\Users\Nammain\Documents\GitHub\QLTV\Quan-ly-hoc-sinh-giao-vien-thpt\bai2\bai2\obj\Debug\bai2.dll
 C:\Users\Nammain\Documents\GitHub\QLTV\Quan-ly-hoc-sinh-giao-vien-thpt\bai2\bai2\obj\Debug\bai2.pdb
+C:\Users\molap\Desktop\TTN\Quan-ly-hoc-sinh-giao-vien-thpt\bai2\bai2\obj\Debug\bai2.csproj.CoreCompileInputs.cache

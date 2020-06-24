@@ -31,19 +31,28 @@ namespace bai2.Controllers
         // GET: Staff/Create
         public ActionResult Create()
         {
-            return View();
+            using (DBModel dbModel = new DBModel())
+            { 
+                List<program> programList = dbModel.programs.ToList();
+                ViewBag.programList = programList;
+                return View();
+            }
+                
         }
 
         // POST: Staff/Create
         [HttpPost]
         public ActionResult Create(staff staff, HttpPostedFileBase uploadImage)
         {
-            string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
-            string extension = Path.GetExtension(uploadImage.FileName);
-            string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
-            filePath = filePath + extension;
-            uploadImage.SaveAs(filePath);
-            staff.image = fileName + extension;
+           
+                string fileName = Path.GetFileNameWithoutExtension(uploadImage.FileName);
+                string extension = Path.GetExtension(uploadImage.FileName);
+                string filePath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                filePath = filePath + extension;
+                uploadImage.SaveAs(filePath);
+                staff.image = fileName + extension;
+
+            
 
 
             using (DBModel dbModel = new DBModel())
@@ -51,6 +60,18 @@ namespace bai2.Controllers
 
                 dbModel.staffs.Add(staff);
                 dbModel.SaveChanges();
+
+                string[] program = Request.Form["programs[]"].Split(',');
+
+
+                for (int i = 0; i < program.Length; i++)
+                {
+                    var staff_program = new staff_program();
+                    staff_program.id_staff = staff.id;
+                    staff_program.id_program = Convert.ToInt32(program[i]);
+                    dbModel.staff_program.Add(staff_program);
+                    dbModel.SaveChanges();
+                }
             }
 
             return RedirectToAction("Index");
@@ -73,7 +94,7 @@ namespace bai2.Controllers
             {
                 using (DBModel dbModel = new DBModel())
                 {
-                    if (Request.Form["image"] != null)
+                    if (uploadImage != null && uploadImage.ContentLength > 0)
                     {
                         if (staff.image != null)
                         {
@@ -90,6 +111,10 @@ namespace bai2.Controllers
                     }
 
                     dbModel.Entry(staff).State = EntityState.Modified;
+                    if (uploadImage == null)
+                    {
+                        dbModel.Entry(staff).Property(m => m.image).IsModified = false;
+                    }
                     dbModel.SaveChanges();
                 }
                 // TODO: Add update logic here
@@ -107,6 +132,7 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
+                
                 return View(dbModel.staffs.Where(x => x.id == id).FirstOrDefault());
             }
         }

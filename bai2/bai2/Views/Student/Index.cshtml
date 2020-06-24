@@ -5,13 +5,12 @@
 }
 
 
-
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table" id="myTable">
+<table class="display" id="myTable" style="width: 100%">
     <thead>
         <tr>
             <th>
@@ -60,7 +59,26 @@
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th style="display: none"></th>
+            <th style="display: none"></th>
+        </tr>
+    </tfoot>
 </table>
+
 
 
 

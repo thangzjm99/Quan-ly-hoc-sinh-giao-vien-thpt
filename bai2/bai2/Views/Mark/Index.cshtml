@@ -1,0 +1,91 @@
+﻿@model IEnumerable<bai2.mark>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Student
+                </th>
+                <th>
+                    Type Mark
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Mark
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @foreach (var student in ViewBag.studentList)
+                    {
+                        if (student.id == item.student_id)
+                        {
+                            @student.name
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var typeMark in ViewBag.typeMarkList)
+                    {
+                        if (typeMark.id == item.type_mark_id)
+                        {
+                            @typeMark.name
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var course in ViewBag.courseList)
+                    {
+                        if (course.id == item.course_id)
+                        {
+                            @course.name
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mark1)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.student_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.type_mark_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.course_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.mark1)
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+

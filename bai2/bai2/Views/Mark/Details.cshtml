@@ -1,0 +1,68 @@
+﻿@model bai2.mark
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+    <div>
+        <h4>mark</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Student
+            </dt>
+
+            <dd>
+                @foreach (var student in ViewBag.studentList)
+                {
+                    if (student.id == Model.student_id)
+                    {
+                        @student.name
+                    }
+                }
+            </dd>
+
+            <dt>
+                Type Mark
+            </dt>
+
+            <dd>
+                @foreach (var typeMark in ViewBag.typeMarkList)
+                {
+                    if (typeMark.id == Model.type_mark_id)
+                    {
+                        @typeMark.name
+                    }
+                }
+            </dd>
+            <dt>
+                Course
+            </dt>
+
+            <dd>
+                @foreach (var course in ViewBag.courseList)
+                {
+                    if (course.id == Model.course_id)
+                    {
+                        @course.name
+                    }
+                }
+            </dd>
+            <dt>
+                Mark
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mark1)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+

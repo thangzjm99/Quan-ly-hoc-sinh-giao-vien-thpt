@@ -15,7 +15,6 @@ namespace bai2
             students = new HashSet<student>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         [StringLength(255)]
@@ -31,8 +30,8 @@ namespace bai2
         public string days { get; set; }
 
         [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [MaxLength(8)]
+        [Timestamp]
         public byte[] created_at { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

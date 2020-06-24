@@ -15,7 +15,6 @@ namespace bai2
             programs = new HashSet<program>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         [StringLength(255)]
@@ -24,15 +23,14 @@ namespace bai2
         public string gender { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? birthday { get; set; }
 
         [Column(TypeName = "text")]
         public string address { get; set; }
 
         [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [MaxLength(8)]
+        [Timestamp]
         public byte[] created_at { get; set; }
 
         [Column(TypeName = "text")]
@@ -40,7 +38,5 @@ namespace bai2
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<program> programs { get; set; }
-
-        
     }
 }

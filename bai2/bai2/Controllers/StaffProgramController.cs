@@ -16,7 +16,7 @@ namespace bai2.Controllers
             {
                 List<staff> staffList = dbModel.staffs.ToList();
                 List<program> programList = dbModel.programs.ToList();
-                ViewBag.studentList = staffList;
+                ViewBag.staffList = staffList;
                 ViewBag.programList = programList;
                 return View(dbModel.staff_program.ToList());
             }
@@ -113,7 +113,7 @@ namespace bai2.Controllers
             {
                 List<staff> staffList = dbModel.staffs.ToList();
                 List<program> programList = dbModel.programs.ToList();
-                ViewBag.studentList = staffList;
+                ViewBag.staffList = staffList;
                 ViewBag.programList = programList;
                 return View(dbModel.staff_program.Where(x => x.id == id).FirstOrDefault());
             }
