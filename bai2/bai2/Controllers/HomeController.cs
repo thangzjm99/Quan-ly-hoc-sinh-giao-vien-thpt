@@ -13,10 +13,8 @@ namespace bai2.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Guide()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
