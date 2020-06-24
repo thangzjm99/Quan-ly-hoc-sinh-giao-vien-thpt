@@ -14,7 +14,7 @@ namespace bai2.Controllers
         {
             using (DBModel dbModel = new DBModel())
             {
-                return View(dbModel.marks.ToList());
+                return View(dbModel.programs.ToList());
             }
         }
 
